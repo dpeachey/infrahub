@@ -6,10 +6,9 @@ generics:
     namespace: Network
     description: "Generic model for network management server (dns, ntp, and dhcp)."
     label: "Network Management Servers"
-    human_friendly_id:
-      - name__value
     display_labels: [name__value]
     order_by: [name__value]
+    icon: mdi:service-toolbox
     include_in_menu: true
     attributes:
       - name: name
@@ -53,9 +52,8 @@ generics:
     description: "Base model for elements"
     label: "Generic Topology Element"
     icon: "carbon:network-3-reference"
-    human_friendly_id:
-      - name__value
     display_labels: [name__value]
+    human_friendly_id: ["name__value"]
     order_by: [name__value]
     include_in_menu: false
     menu_placement: "TopologyTopology"
@@ -81,9 +79,8 @@ generics:
     description: "Generic model for network strategies (underlays and overlays)."
     label: "Network Strategy"
     icon: "iconoir:strategy"
-    human_friendly_id:
-      - name__value
     display_labels: [name__value]
+    human_friendly_id: ["name__value"]
     order_by: [name__value]
     include_in_menu: true
     menu_placement: "TopologyTopology"
@@ -101,6 +98,53 @@ generics:
         optional: true
         cardinality: many
 
+  - name: NetworkService
+    namespace: Topology
+    description: "Generic model for network service that could be extended as real nodes."
+    label: Network Service
+    icon: "carbon:ibm-cloud-internet-services"
+    order_by:
+      - name__value
+    display_labels:
+      - name__value
+    attributes:
+      - name: name
+        label: Service Name
+        kind: Text
+        order_weight: 1000
+        unique: true
+      - name: description
+        kind: Text
+        order_weight: 1100
+        optional: true
+      - name: status
+        order_weight: 1150
+        optional: false
+        kind: Dropdown
+        choices:
+          - name: provisioning
+            label: Provisioning
+            description: "In the process of being set up and configured."
+            color: "#ffff7f"
+          - name: active
+            label: Active
+            description: "Fully operational and currently in service."
+            color: "#7fbf7f"
+          - name: decommissioning
+            label: Decommissioning
+            description: "In the process of beeing taken out of service."
+            color: "#fbfbfb"
+          - name: decommissioned
+            label: Decommissioned
+            description: "Taken out of service."
+            color: "#bfbfbf"
+    relationships:
+      - name: topology
+        peer: TopologyTopology
+        cardinality: one
+        kind: Parent
+        optional: false
+
 nodes:
   # --------------------  Topology  --------------------
   - name: Topology
@@ -108,10 +152,9 @@ nodes:
     description: "A Topology represents the entire network pod."
     label: "Topology"
     icon: "carbon:network-3"
-    human_friendly_id:
-      - name__value
     display_labels:
       - name__value
+    human_friendly_id: ["name__value"]
     order_by: [name__value]
     inherit_from:
       - CoreArtifactTarget
@@ -141,7 +184,7 @@ nodes:
         cardinality: one
         kind: Attribute
       - name: devices
-        peer: DcimGenericDevice
+        peer: InfraGenericDevice
         optional: true
         cardinality: many
         kind: Component
@@ -161,8 +204,6 @@ nodes:
       - TopologyNetworkStrategy
     menu_placement: "TopologyNetworkStrategy"
     include_in_menu: false
-    human_friendly_id:
-      - name__value
     order_by: [name__value]
     display_labels:
       - name__value
@@ -194,8 +235,6 @@ nodes:
       - TopologyNetworkStrategy
     menu_placement: "TopologyNetworkStrategy"
     include_in_menu: false
-    human_friendly_id:
-      - name__value
     order_by: [name__value]
     display_labels:
       - name__value
@@ -224,8 +263,6 @@ nodes:
     label: "Physical Topology Element"
     icon: "carbon:network-3-reference"
     menu_placement: "TopologyTopology"
-    human_friendly_id:
-      - name__value
     order_by: [name__value]
     display_labels:
       - name__value
@@ -268,7 +305,7 @@ nodes:
     relationships:
       - name: device_type
         label: Type
-        peer: DcimDeviceType
+        peer: InfraDeviceType
         optional: true
         cardinality: one
         kind: Attribute
@@ -282,8 +319,6 @@ nodes:
     icon: "gis:globe-options"
     menu_placement: "NetworkManagementServer"
     include_in_menu: false
-    human_friendly_id:
-      - name__value
     display_labels: [name__value]
     order_by: [name__value]
     attributes:
@@ -307,8 +342,6 @@ nodes:
     icon: "eos-icons:ip"
     menu_placement: "NetworkManagementServer"
     include_in_menu: false
-    human_friendly_id:
-      - name__value
     display_labels: [name__value]
     order_by: [name__value]
     inherit_from:
@@ -329,8 +362,6 @@ nodes:
     label: "DNS Server"
     icon: "eos-icons:dns"
     menu_placement: "NetworkManagementServer"
-    human_friendly_id:
-      - name__value
     display_labels: [name__value]
     order_by: [name__value]
     inherit_from:
@@ -341,95 +372,60 @@ nodes:
     label: "NTP Server"
     icon: "iconoir:time-zone"
     menu_placement: "NetworkManagementServer"
-    human_friendly_id:
-      - name__value
     display_labels: [name__value]
     order_by: [name__value]
     inherit_from:
       - NetworkManagementServer
 
   # --------------------  Network Services --------------------
-  - name: NetworkServiceIdentifier
+  - name: Layer2NetworkService
     namespace: Topology
-    description: "Generic model for different types of identifiers used in network services."
-    label: Network Service Identifier
-    icon: "mdi:identifier"
-    menu_placement: "TopologyNetworkService"
-    human_friendly_id:
-      - identifier__value
-    order_by:
-      - identifier__value
-    display_labels:
-      - identifier__value
-    attributes:
-      - name: identifier
-        kind: Number
-    relationships:
-      - name: service
-        label: Network Service
-        peer: TopologyNetworkService
-        cardinality: one
-        optional: true
-  - name: NetworkService
-    namespace: Topology
-    description: "Network services attached to a Topology."
-    label: Network Service
+    description: "Layer 2 network service attached to a Topology."
+    label: Layer2 Network Service
     icon: "carbon:ibm-cloud-internet-services"
-    human_friendly_id:
-      - name__value
-    order_by:
-      - name__value
-    display_labels:
-      - name__value
-    attributes:
-      - name: name
-        label: Service Name
-        kind: Text
-        order_weight: 1000
-      - name: description
-        kind: Text
-        order_weight: 1100
-      - name: service_type
-        kind: Text
-        enum: ["Layer2", "Layer3"]
-        order_weight: 1200
+    menu_placement: "TopologyNetworkService"
+    inherit_from:
+      - TopologyNetworkService
     relationships:
-      - name: identifier
-        peer: TopologyNetworkServiceIdentifier
-        cardinality: one
-        kind: Attribute
-        optional: false
-      - name: topology
-        peer: TopologyTopology
-        cardinality: one
-        kind: Parent
-        optional: false
       - name: vlan
         peer: InfraVLAN
-        optional: true
         cardinality: one
         kind: Component
+        identifier: network_service__vlan
         order_weight: 1500
+        optional: true
+
+  - name: Layer3NetworkService
+    namespace: Topology
+    description: "Layer 3 network service attached to a Topology."
+    label: Layer3 Network Service
+    icon: "carbon:ibm-cloud-internet-services"
+    menu_placement: "TopologyNetworkService"
+    inherit_from:
+      - TopologyNetworkService
+    relationships:
       - name: prefix
         peer: InfraPrefix
-        optional: true
         cardinality: one
         kind: Component
         order_weight: 1400
+        optional: true
+      - name: vlan
+        peer: InfraVLAN
+        cardinality: one
+        kind: Component
+        identifier: network_service__vlan
+        order_weight: 1500
+        optional: true
 
 extensions:
   nodes:
-    - kind: DcimGenericDevice
-      relationships:
-        - name: topology
-          peer: TopologyTopology
-          optional: true
-          cardinality: one
-    - kind: IpamPrefix
+    - kind: InfraVLAN
       relationships:
         - name: network_service
-          label: Network Service
           peer: TopologyNetworkService
+          identifier: network_service__vlan
           optional: true
           cardinality: one
+          kind: Attribute
           order_weight: 1400

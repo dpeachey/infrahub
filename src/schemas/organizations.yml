@@ -1,19 +1,15 @@
----
 # yaml-language-server: $schema=https://schema.infrahub.app/infrahub/schema/latest.json
+---
 version: "1.0"
-
 generics:
   - name: Generic
     namespace: Organization
     label: Organization
     description: An organization represent a legal entity, a company.
-    human_friendly_id:
-      - name__value
-    order_by:
-      - name__value
+    icon: mdi:domain
     display_labels:
       - name__value
-    icon: mdi:domain
+    human_friendly_id: ["name__value"]
     include_in_menu: true
     attributes:
       - name: name
@@ -31,11 +27,18 @@ generics:
         kind: Attribute
         optional: true
         order_weight: 3000
+      - name: asn
+        label: "Autonomous System"
+        cardinality: many
+        optional: true
+        peer: InfraAutonomousSystem
+        order_weight: 2000
 
 nodes:
   - name: Manufacturer
     namespace: Organization
     description: Device Manufacturer
+    order_by: [name__value]
     icon: mdi:domain
     inherit_from:
       - OrganizationGeneric
@@ -43,19 +46,46 @@ nodes:
     menu_placement: OrganizationGeneric
     relationships:
       - name: device_type
-        peer: DcimDeviceType
+        peer: InfraDeviceType
         cardinality: many
         optional: true
       - name: platform
-        peer: DcimPlatform
+        peer: InfraPlatform
         cardinality: many
         optional: true
-
   - name: Provider
     namespace: Organization
     description: Circuit or Location Provider
+    order_by: [name__value]
     icon: mdi:domain
     inherit_from:
       - OrganizationGeneric
     include_in_menu: true
     menu_placement: OrganizationGeneric
+    relationships:
+      - name: location
+        peer: LocationBuilding
+        cardinality: many
+        optional: true
+      - name: circuit
+        peer: InfraCircuit
+        cardinality: many
+        optional: true
+  - name: Tenant
+    namespace: Organization
+    description: Customer
+    order_by: [name__value]
+    icon: mdi:domain
+    inherit_from:
+      - OrganizationGeneric
+    include_in_menu: true
+    menu_placement: OrganizationGeneric
+    relationships:
+      - name: location
+        peer: LocationBuilding
+        cardinality: many
+        optional: true
+      - name: circuit
+        peer: InfraCircuit
+        cardinality: many
+        optional: true
