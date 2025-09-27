@@ -193,8 +193,6 @@ nodes:
           jinja2_template: "{{ type__value }} device used as {{ role__value }} on {{ site__name__value|lower }}"
         read_only: true
         optional: false
-      - name: type
-        kind: Text
       - name: status
         kind: Dropdown
         optional: true
@@ -487,7 +485,7 @@ nodes:
   - name: Model
     namespace: Infra
     description: "A model of device"
-    label: "Device Model"
+    label: "Model"
     icon: "mdi:poll"
     default_filter: name__value
     human_friendly_id: ["name__value"]
