@@ -141,7 +141,7 @@ nodes:
         cardinality: one
         kind: Attribute
       - name: devices
-        peer: DcimDevice
+        peer: DcimGenericDevice
         optional: true
         cardinality: many
         kind: Component
@@ -419,13 +419,13 @@ nodes:
 
 extensions:
   nodes:
-    - kind: DcimDevice
+    - kind: DcimGenericDevice
       relationships:
         - name: topology
           peer: TopologyTopology
           optional: true
           cardinality: one
-    - kind: IpamIPPrefix
+    - kind: IpamPrefix
       relationships:
         - name: network_service
           label: Network Service
