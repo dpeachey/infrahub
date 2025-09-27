@@ -173,15 +173,3 @@ spec:
                   label: "BGP Peer Group"
                   icon: "mdi:view-grid-plus-outline"
                   kind: InfraBGPPeerGroup
-
-    - namespace: Infra
-      name: Service
-      label: Services
-      icon: "carbon:container-services"
-      children:
-        data:
-          - namespace: Infra
-            name: BackBoneService
-            label: "Backbone Service"
-            kind: InfraBackBoneService
-            icon: "carbon:container-services"
