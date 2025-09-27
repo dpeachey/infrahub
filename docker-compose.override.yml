@@ -2,4 +2,4 @@
 services:
   task-worker:
     volumes:
-      - ../src/:/upstream
+      - ../:/upstream
