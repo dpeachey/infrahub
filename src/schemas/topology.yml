@@ -141,7 +141,7 @@ nodes:
         cardinality: one
         kind: Attribute
       - name: devices
-        peer: DcimGenericDevice
+        peer: DcimDevice
         optional: true
         cardinality: many
         kind: Component
@@ -419,7 +419,7 @@ nodes:
 
 extensions:
   nodes:
-    - kind: DcimGenericDevice
+    - kind: DcimDevice
       relationships:
         - name: topology
           peer: TopologyTopology
