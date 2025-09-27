@@ -119,6 +119,11 @@ spec:
             kind: InfraPlatform
             icon: "mdi:application-cog-outline"
 
+          - namespace: Infra
+            name: Model
+            label: Device Model
+            kind: InfraModel
+            icon: "mdi:poll"
 
     - namespace: Infra
       name: CircuitMenu

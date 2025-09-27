@@ -285,6 +285,11 @@ nodes:
         optional: true
         cardinality: one
         kind: Attribute
+      - name: model
+        peer: InfraModel
+        optional: true
+        cardinality: one
+        kind: Attribute
       - name: mlag_domain
         peer: InfraMlagDomain
         optional: true
@@ -479,6 +484,55 @@ nodes:
         peer: InfraDevice
         optional: true
         cardinality: many
+  - name: Model
+    namespace: Infra
+    description: "A model of device"
+    label: "Device Model"
+    icon: "mdi:poll"
+    default_filter: name__value
+    human_friendly_id: ["name__value"]
+    order_by:
+      - manufacturer__name__value
+      - name__value
+    attributes:
+      - name: name
+        kind: Text
+        unique: true
+      - name: description
+        kind: Text
+        optional: true
+      - name: part_number
+        label: Part Number
+        optional: true
+        kind: Text
+      - name: height
+        label: Height (U)
+        optional: false
+        default_value: 1
+        kind: Number
+      - name: full_depth
+        label: Full Depth
+        default_value: true
+        kind: Boolean
+      - name: weight
+        label: Weight (kg)
+        optional: true
+        kind: Number
+    relationships:
+      - name: platform
+        peer: InfraPlatform
+        cardinality: one
+        kind: Attribute
+      - name: manufacturer
+        peer: OrganizationManufacturer
+        cardinality: one
+        kind: Attribute
+        optional: false
+      - name: tags
+        peer: BuiltinTag
+        optional: true
+        cardinality: many
+        kind: Attribute
 
   # --------------------  Circuits  --------------------
   - name: Circuit
