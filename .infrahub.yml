@@ -1,42 +1,45 @@
 ---
-python_transforms:
-  - name: device_transform_yaml
-    class_name: DeviceTransformYaml
-    file_path: src/transforms/device_transform.py
+schemas:
+  - src/schemas/
 
-queries:
-  - name: device_query
-    file_path: src/queries/device_query.gql
-  - name: device_minimal_query
-    file_path: src/queries/device_minimal_query.gql
-  - name: interface_device_query
-    file_path: src/queries/interface_device_query.gql
-  # - name: all_devices_query
-  #   file_path: queries/all_devices_query.gql
-  # - name: loopback_query
-  #   file_path: queries/loopback_query.gql
-  # - name: device_loopback_query
-  #   file_path: queries/device_loopback_query.gql
-  # - name: sites_query
-  #   file_path: queries/sites_query.gql
+# python_transforms:
+#   - name: device_transform_yaml
+#     class_name: DeviceTransformYaml
+#     file_path: src/transforms/device_transform.py
 
-artifact_definitions:
-  - name: device_config_yaml
-    artifact_name: Device config YAML
-    content_type: application/yaml
-    targets: devices
-    transformation: device_transform_yaml
-    parameters:
-      device: name__value
+# queries:
+#   - name: device_query
+#     file_path: src/queries/device_query.gql
+#   - name: device_minimal_query
+#     file_path: src/queries/device_minimal_query.gql
+#   - name: interface_device_query
+#     file_path: src/queries/interface_device_query.gql
+#   - name: all_devices_query
+#     file_path: queries/all_devices_query.gql
+#   - name: loopback_query
+#     file_path: queries/loopback_query.gql
+#   - name: device_loopback_query
+#     file_path: queries/device_loopback_query.gql
+#   - name: sites_query
+#     file_path: queries/sites_query.gql
 
-generator_definitions:
-  - name: device_artifact_generator
-    class_name: DeviceArtifactGenerator
-    file_path: src/generators/device_artifact_generator.py
-    targets: interfaces
-    query: interface_device_query
-    parameters:
-      interface_id: id
+# artifact_definitions:
+#   - name: device_config_yaml
+#     artifact_name: Device config YAML
+#     content_type: application/yaml
+#     targets: devices
+#     transformation: device_transform_yaml
+#     parameters:
+#       device: name__value
+
+# generator_definitions:
+#   - name: device_artifact_generator
+#     class_name: DeviceArtifactGenerator
+#     file_path: src/generators/device_artifact_generator.py
+#     targets: interfaces
+#     query: interface_device_query
+#     parameters:
+#       interface_id: id
 #   - name: device_generator
 #     class_name: DeviceGenerator
 #     file_path: generators/device_generator.py
