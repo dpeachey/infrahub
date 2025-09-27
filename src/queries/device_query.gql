@@ -1,0 +1,158 @@
+query DeviceQuery($device: String!) {
+  InfraDevice(name__value: $device) {
+    edges {
+      node {
+        name {
+          value
+        }
+        description {
+          value
+        }
+        status {
+          value
+        }
+        role {
+          value
+        }
+        platform {
+          node {
+            name {
+              value
+            }
+          }
+        }
+        type {
+          value
+        }
+        site {
+          node {
+            name {
+              value
+            }
+            vlans {
+              edges {
+                node {
+                  vlan_id {
+                    value
+                  }
+                }
+              }
+            }
+          }
+        }
+        interfaces {
+          edges {
+            node {
+              name {
+                value
+              }
+              description {
+                value
+              }
+              enabled {
+                value
+              }
+              role {
+                value
+              }
+              status {
+                value
+              }
+              ... on InfraLagInterfaceL2 {
+                l2_mode {
+                  value
+                }
+                untagged_vlan {
+                  node {
+                    vlan_id {
+                      value
+                    }
+                  }
+                }
+              }
+              ... on InfraLagInterfaceL2 {
+                l2_mode {
+                  value
+                }
+                untagged_vlan {
+                  node {
+                    vlan_id {
+                      value
+                    }
+                  }
+                }
+              }
+              ... on InfraInterfaceL3 {
+                ip_addresses {
+                  edges {
+                    node {
+                      address {
+                        value
+                      }
+                    }
+                  }
+                }
+              }
+              ... on InfraInterfaceL2 {
+                l2_mode {
+                  value
+                }
+                tagged_vlan {
+                  edges {
+                    node {
+                      vlan_id {
+                        value
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        bgp_sessions {
+          edges {
+            node {
+              status {
+                value
+              }
+              local_ip {
+                node {
+                  address {
+                    value
+                  }
+                }
+              }
+              remote_ip {
+                node {
+                  address {
+                    value
+                  }
+                }
+              }
+              local_as {
+                node {
+                  asn {
+                    value
+                  }
+                }
+              }
+              remote_as {
+                node {
+                  asn {
+                    value
+                  }
+                }
+              }
+              peer_group {
+                node {
+                  display_label
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
