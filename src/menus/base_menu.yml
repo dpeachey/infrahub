@@ -121,7 +121,7 @@ spec:
 
           - namespace: Infra
             name: Model
-            label: Device Model
+            label: Model
             kind: InfraModel
             icon: "mdi:poll"
 
