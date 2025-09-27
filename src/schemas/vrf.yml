@@ -76,7 +76,7 @@ nodes:
 
 extensions:
   nodes:
-    - kind: IpamPrefix
+    - kind: IpamIPPrefix
       relationships:
         - name: vrf
           label: VRF

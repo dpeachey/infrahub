@@ -425,7 +425,7 @@ extensions:
           peer: TopologyTopology
           optional: true
           cardinality: one
-    - kind: IpamPrefix
+    - kind: IpamIPPrefix
       relationships:
         - name: network_service
           label: Network Service
