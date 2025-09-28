@@ -138,8 +138,8 @@ spec:
             kind: InfraCircuit
 
     - namespace: Infra
-      name: NetworkMenu
-      label: Network Configuration
+      name: NetworkSegmentation
+      label: Network Segmentation
       icon: "mdi:lan"
       children:
         data:

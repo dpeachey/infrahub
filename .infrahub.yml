@@ -2,6 +2,9 @@
 schemas:
   - src/schemas/
 
+menus:
+  - src/menus/
+
 # python_transforms:
 #   - name: device_transform_yaml
 #     class_name: DeviceTransformYaml
