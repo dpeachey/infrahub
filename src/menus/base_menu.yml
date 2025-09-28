@@ -148,6 +148,11 @@ spec:
             label: "VLAN"
             icon: "mdi:lan-pending"
             kind: InfraVLAN
+          - name: VRF
+            namespace: Infra
+            label: "VRF"
+            icon: "mdi:lan-pending"
+            kind: InfraVRF
 
     - namespace: Infra
       name: RoutingPeeringMenu
