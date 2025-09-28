@@ -82,7 +82,7 @@ nodes:
     label: "VRF"
     icon: "mdi:lan-pending"   # mdi:lan
     default_filter: name__value
-    human_friendly_id: ["name__value", "vlan_id__value"]
+    human_friendly_id: ["name__value", "route_distinguisher__value"]
     order_by:
       - name__value
     display_labels:
