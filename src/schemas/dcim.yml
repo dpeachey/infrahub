@@ -190,7 +190,7 @@ nodes:
         description: Combine various attributes to provide a human frendly description of this device.
         computed_attribute:
           kind: Jinja2
-          jinja2_template: "{{ type__value }} device used as {{ role__value }} on {{ site__name__value|lower }}"
+          jinja2_template: "{{ model__name__value }} device used as {{ role__value }} on {{ site__name__value|lower }}"
         read_only: true
         optional: false
       - name: status

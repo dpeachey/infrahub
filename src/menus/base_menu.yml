@@ -138,7 +138,7 @@ spec:
             kind: InfraCircuit
 
     - namespace: Infra
-      name: NetworkSegmentation
+      name: NetworkSegmentationMenu
       label: Network Segmentation
       icon: "mdi:lan"
       children:
@@ -184,3 +184,41 @@ spec:
                   icon: "mdi:view-grid-plus-outline"
                   kind: InfraBGPPeerGroup
 
+    - namespace: Network
+      name: NetworkManagementMenu
+      label: Network Management
+      icon: "iconoir:time-zone"
+      children:
+        data:
+          - name: NameServer
+            namespace: Network
+            label: "DNS Server"
+            icon: "eos-icons:dns"
+            kind: NetworkNameServer
+          - name: NTPServer
+            namespace: Network
+            label: "NTP Server"
+            icon: "iconoir:time-zone"
+            kind: NetworkNTPServer
+          - name: TacacsServer
+            namespace: Network
+            label: "TACACS Server"
+            icon: "mdi:account-multiple-add-outline"
+            kind: NetworkTacacsServer
+
+    - namespace: Topology
+      name: TopologyMenu
+      label: Network Topology
+      icon: "carbon:network-3"
+      children:
+        data:
+          - name: Topology
+            namespace: Topology
+            label: "Network Topology"
+            icon: "carbon:network-3"
+            kind: TopologyTopology
+          - name: NetworkStrategy
+            namespace: Topology
+            label: "Network Strategy"
+            icon: "iconoir:strategy"
+            kind: TopologyNetworkStrategy
