@@ -105,7 +105,7 @@ nodes:
     namespace: Topology
     description: "A Topology represents the entire network pod."
     label: "Topology"
-    icon: "carbon:network-3"
+    include_in_menu: false
     human_friendly_id:
       - name__value
     display_labels:
