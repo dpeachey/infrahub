@@ -105,6 +105,7 @@ nodes:
     namespace: Topology
     description: "A Topology represents the entire network pod."
     label: "Topology"
+    icon: "carbon:network-3"
     include_in_menu: false
     human_friendly_id:
       - name__value
@@ -220,7 +221,7 @@ nodes:
     namespace: Topology
     description: "Physical aspect of topology elements."
     label: "Physical Topology Element"
-    icon: "carbon:network-3-reference"
+    include_in_menu: false
     human_friendly_id:
       - name__value
     order_by: [name__value]
