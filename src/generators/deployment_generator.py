@@ -8,10 +8,11 @@ class DeploymentGenerator(InfrahubGenerator):
         change_id = data["CoreProposedChange"]["edges"][0]["node"]["id"]
         change = await self.client.get(kind="CoreProposedChange", ids=[change_id])
 
-        deployment_obj = await self.client.create(
-            kind="ChangeDeployment",
-            name=f"deployment-{change_id}",
-            status="requested",
-            proposed_change=change,
-        )
-        await deployment_obj.save()
+        if change.state.value == "merged":
+            deployment_obj = await self.client.create(
+                kind="ChangeDeployment",
+                name=f"deployment-{change_id}",
+                status="requested",
+                proposed_change=change,
+            )
+            await deployment_obj.save()
