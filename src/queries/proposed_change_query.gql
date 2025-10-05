@@ -1,0 +1,12 @@
+query ProposedChangeQuery($proposed_change_id: [ID]) {
+  CoreProposedChange(ids: $proposed_change_id) {
+    edges {
+      node {
+        id
+        name {
+          value
+        }
+      }
+    }
+  }
+}
