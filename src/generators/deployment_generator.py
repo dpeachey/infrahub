@@ -15,4 +15,4 @@ class DeploymentGenerator(InfrahubGenerator):
                 status="requested",
                 proposed_change=change,
             )
-            await deployment_obj.save()
+            await deployment_obj.save(upsert=True)
