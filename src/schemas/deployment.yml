@@ -2,8 +2,8 @@
 ---
 version: "1.0"
 nodes:
-  - name: Change
-    namespace: Deployment
+  - name: Deployment
+    namespace: Change
     description: "A deployment represents deployment of a merged proposed change."
     label: "Deployment"
     icon: "mdi:exchange"
