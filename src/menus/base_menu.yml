@@ -222,3 +222,15 @@ spec:
             label: "Network Strategy"
             icon: "iconoir:strategy"
             kind: TopologyNetworkStrategy
+
+    - namespace: Deployment
+      name: DeploymentMenu
+      label: Deployment
+      icon: "mdi:format-text-wrapping-overflow"
+      children:
+        data:
+          - name: Deployment
+            namespace: Deployment
+            label: "Deployment"
+            icon: "mdi:format-text-wrapping-overflow"
+            kind: ChangeDeployment

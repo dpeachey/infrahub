@@ -1,0 +1,42 @@
+# yaml-language-server: $schema=https://schema.infrahub.app/infrahub/schema/latest.json
+---
+version: "1.0"
+nodes:
+  - name: Change
+    namespace: Deployment
+    description: "A deployment represents deployment of a merged proposed change."
+    label: "Deployment"
+    icon: "mdi:exchange"
+    include_in_menu: false
+    human_friendly_id:
+      - name__value
+    display_labels:
+      - name__value
+    order_by: [name__value]
+    attributes:
+      - name: name
+        kind: Text
+        unique: true
+        order_weight: 1000
+      - name: status
+        kind: Dropdown
+        choices:
+          - name: requested
+            label: Requested
+          - name: deploying
+            label: Deploying
+          - name: deployed
+            label: Deployed
+          - name: failed
+            label: Failed
+        order_weight: 1100
+    relationships:
+      - name: proposed_change
+        peer: CoreProposedChange
+        cardinality: one
+        kind: Attribute
+      - name: artifacts
+        peer: CoreArtifact
+        optional: true
+        cardinality: many
+        kind: Component
